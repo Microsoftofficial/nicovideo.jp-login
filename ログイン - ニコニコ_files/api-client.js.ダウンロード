@@ -1,0 +1,148 @@
+/**
+ * API クライアントライブラリです。
+ *
+ * @requires jquery-3.5.0.min.js
+ */
+var NicoAccountApiClient = function() {}
+
+NicoAccountApiClient.prototype = {
+  // Ajax call を行います。
+  ajax: function(url, data, onSuccessCallback, onFailureCallback) {
+    $.ajax({
+      "url": url,
+      "method": "POST",
+      "data": data,
+
+      success: function( data, textStatus, xmlHttpRequest ) {
+        onSuccessCallback(xmlHttpRequest);
+      },
+
+      error: function( xmlHttpRequest, textStatus, errorThrown ) {
+        onFailureCallback(xmlHttpRequest);
+      }
+    })
+  },
+
+  ajaxMultipart: function(url, data, onSuccessCallback, onFailureCallback) {
+    $.ajax({
+      "url": url,
+      "method": "POST",
+      "data": data,
+      "processData" : false,
+      "contentType" : false,
+
+      success: function( data, textStatus, xmlHttpRequest ) {
+        onSuccessCallback(xmlHttpRequest);
+      },
+
+      error: function( xmlHttpRequest, textStatus, errorThrown ) {
+        onFailureCallback(xmlHttpRequest);
+      }
+    })
+  },
+
+  /**
+   * API を呼び出します。
+   * @param apiDescriptor 呼び出すAPIを記述します。以下の要素を持つ JSON object です。
+   *          url: API の URL パス。
+   *          method: API の HTTP メソッド。
+   *          csrf_token: CSRF トークン文字列。 (optional)
+   *          csrf_token_expire: CSRF トークンの有効期限 (Number)。 (optional)
+   * @param selector 送信すべきパラメータを表す jQuery セレクタです。
+   *        ここで指定した ID の要素の値が API に送信されます。
+   * @param onSuccessCallback 成功時に呼ばれるコールバックです。xmlHttpResponse が与えられます。
+   * @param onFailureCallback 失敗時に呼ばれるコールバックです。xmlHttpResponse が与えられます。
+   */
+  invoke: function(apiDescriptor, selector, onSuccessCallback, onFailureCallback) {
+    var formElements = selector == null ? [] : $(selector);
+    var formParameters = {};
+    for (var i = 0; i < formElements.length; ++i) {
+      var element = formElements[i];
+      formParameters[element.name] = element.value;
+    }
+    this.invokeParameters(apiDescriptor, formParameters, onSuccessCallback, onFailureCallback);
+  },
+
+  /**
+   * API を呼び出します。
+   * @param apiDescriptor 呼び出すAPIを記述します。以下の要素を持つ JSON object です。
+   *          url: API の URL パス。
+   *          method: API の HTTP メソッド。
+   *          csrf_token: CSRF トークン文字列。 (optional)
+   *          csrf_token_expire: CSRF トークンの有効期限 (Number)。 (optional)
+   * @param parameters 送信すべきパラメータです。
+   * @param onSuccessCallback 成功時に呼ばれるコールバックです。xmlHttpResponse が与えられます。
+   * @param onFailureCallback 失敗時に呼ばれるコールバックです。xmlHttpResponse が与えられます。
+   */
+  invokeParameters: function(apiDescriptor, parameters, onSuccessCallback, onFailureCallback) {
+    var url = apiDescriptor["url"];
+    var csrfToken = {};
+    if ("csrf_token" in apiDescriptor) {
+      csrfToken["csrf_token"] = apiDescriptor["csrf_token"];
+    }
+    if ("csrf_token_expire" in apiDescriptor) {
+      csrfToken["csrf_token_expire"] = apiDescriptor["csrf_token_expire"];
+    }
+    var _parameters = $.extend(csrfToken, parameters);
+    this.ajax(url, _parameters, onSuccessCallback, onFailureCallback);
+  },
+
+  /**
+   * API を呼び出します。
+   * @param apiDescriptor 呼び出すAPIを記述します。以下の要素を持つ JSON object です。
+   *          url: API の URL パス。
+   *          method: API の HTTP メソッド。
+   *          csrf_token: CSRF トークン文字列。 (optional)
+   *          csrf_token_expire: CSRF トークンの有効期限 (Number)。 (optional)
+   * @param selector 送信すべきパラメータを表す jQuery セレクタです。
+   *        ここで指定した ID のノードの子孫のうち、input, textarea, select, button 要素の値が
+   *        API に送信されます。
+   * @param onSuccessCallback 成功時に呼ばれるコールバックです。xmlHttpResponse が与えられます。
+   * @param onFailureCallback 失敗時に呼ばれるコールバックです。xmlHttpResponse が与えられます。
+   */
+  invokeMultipart: function(apiDescriptor, selector, onSuccessCallback, onFailureCallback) {
+    var url = apiDescriptor["url"];
+    var formElements = $(selector);
+    var request = new FormData(formElements[0]);
+
+    if ("csrf_token" in apiDescriptor) {
+      request.append("csrf_token", apiDescriptor["csrf_token"]);
+    }
+    if ("csrf_token_expire" in apiDescriptor) {
+      request.append("csrf_token_expire", apiDescriptor["csrf_token_expire"]);
+    }
+    this.ajaxMultipart(url, request, onSuccessCallback, onFailureCallback);
+  }
+};
+
+/**
+ * xmlHttpResponse からエラーコードを取得し、エラーメッセージに変換するクラスです。
+ *
+ * 第一引数に、未知のエラーコードの場合に表示する既定の (翻訳済みの) メッセージを指定します。
+ * 第二引数以降に、エラーコードとメッセージの対応を表す連想配列を任意の個数指定できます。
+ */
+var ErrorMessageExtractor = function(defaultErrorMessage) {
+  this.defaultErrorMessage = defaultErrorMessage;
+  this.errorMessages = {};
+  for (var i = 1; i < arguments.length; ++i) {
+    this.errorMessages = $.extend(this.errorMessages, arguments[i]);
+  }
+};
+
+ErrorMessageExtractor.prototype = {
+  getErrorMessage: function ( xmlHttpRequest ) {
+    // xmlHttpRequest.responseText はレスポンスが取得できなかった場合 null になります。
+    var data = JSON.parse(xmlHttpRequest.responseText);
+    var errorCode = null;
+    if (typeof data == "object" && typeof data["meta"] == "object") {
+      errorCode = data["meta"]["error-code"];
+    } else {
+      errorCode = undefined;
+    }
+    var message = this.errorMessages[errorCode];
+    if (typeof message === "undefined") {
+      message = this.defaultErrorMessage;
+    }
+    return message;
+  }
+}

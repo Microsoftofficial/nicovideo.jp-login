@@ -1,0 +1,683 @@
+@charset "UTF-8";
+/*
+  # デフォルトスタイルの初期化
+
+  html5doctor.com Reset Stylesheet v1.6.1
+  Author: Richard Clark - http://richclarkdesign.com
+
+*/
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, input, select,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+  background: #ffffff;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+nav ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  text-decoration: none;
+}
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none;
+}
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  margin: 1em 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+html {
+  font-size: 13px;
+  color: #3C3F3F;
+  font-family: 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', sans-serif;
+}
+
+input, button, textarea {
+  font-family: 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'Osaka', sans-serif;
+}
+
+.text-link {
+  text-decoration: underline;
+}
+.text-link:link {
+  color: #3F3FCF;
+  text-decoration: underline;
+}
+.text-link:visited {
+  color: #9F3F9F;
+  text-decoration: underline;
+}
+.text-link:active {
+  color: #FF3F0F;
+}
+
+.text-help-link {
+  text-decoration: underline;
+}
+.text-help-link:link {
+  color: #3F3FCF;
+  text-decoration: underline;
+}
+.text-help-link:visited {
+  color: #9F3F9F;
+  text-decoration: underline;
+}
+.text-help-link:active {
+  color: #FF3F0F;
+}
+
+.header {
+  display: block;
+  width: 944px;
+  padding: 48px 8px 0;
+  margin: 0 auto 16px;
+}
+.header .header__title {
+  width: 194px;
+  height: 40px;
+}
+.header .header__title img {
+  width: 194px;
+  height: 40px;
+}
+
+.main {
+  margin: 0 auto 24px;
+}
+.main.login {
+  position: relative;
+  width: 368px;
+  padding-right: 592px;
+}
+.main.login .contents-header {
+  display: none;
+}
+.main.login .row {
+  margin-bottom: 16px;
+}
+.main.login .login-form {
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 16px;
+  border-radius: 8px;
+  border: #9C9F9F solid 2px;
+  box-shadow: 0 0 4px #9C9F9F;
+  background-color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #efefec));
+  background-image: -webkit-linear-gradient(white, #efefec);
+  background-image: linear-gradient(white, #efefec);
+}
+.main.login .login-form form {
+  *zoom: 1;
+}
+.main.login .login-form form:before, .main.login .login-form form:after {
+  content: " ";
+  display: table;
+}
+.main.login .login-form form:after {
+  clear: both;
+}
+.main.login .login-form .input-group {
+  margin-bottom: 8px;
+}
+.main.login .login-form .input-group.neighbor {
+  float: left;
+}
+.main.login .login-form .input-group__label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+.main.login .login-form input[type="text"] {
+  width: 304px;
+  font-size: 16px;
+  padding: 4px;
+  background-color: #fff;
+  border: solid 2px #9C9F9F;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset;
+}
+.main.login .login-form input[type="text"]:focus {
+  color: #3C3F3F;
+  box-shadow: #0cf 0 0 3px;
+  border-color: #09C;
+}
+.main.login .login-form input[type="password"] {
+  width: 136px;
+  font-size: 16px;
+  padding: 4px;
+  background-color: #fff;
+  border: solid 2px #9C9F9F;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25) inset;
+}
+.main.login .login-form input[type="password"]:focus {
+  color: #3C3F3F;
+  box-shadow: #0cf 0 0 3px;
+  border-color: #09C;
+}
+.main.login .login-form .button-wrap {
+  float: right;
+  width: 160px;
+  height: 52px;
+}
+
+.main.login .login-form .button-primary {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 52px;
+  font-size: 20px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 1px 1px #036;
+  border-radius: 6px;
+  background-color: #00cccc;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00cccc), color-stop(100%, #6699cc));
+  background-image: -webkit-linear-gradient(#00cccc, #6699cc);
+  background-image: linear-gradient(#00cccc, #6699cc);
+  cursor: pointer;
+  border: solid 2px;
+  border-color: #09C #069 #036;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+
+.main.login .login-form .text-muted {
+  font-size: 12px;
+}
+.main.login .ads {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 576px;
+  height: 324px;
+}
+.main.login .ads iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.main .sns-group .text-description {
+  color: #333;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.main .sns-group .button-wrap > p {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+/* button */
+.buttons{
+  margin-bottom: 8px;
+}
+
+.button-container{
+  margin-bottom: 8px;
+}
+
+.button-container:last-child{
+  margin-bottom: 0;
+}
+
+.button-container .button{
+  position: relative;
+  display: block;
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  border-radius: 4px;
+  line-height: 40px;
+  padding-left: 40px;
+  height: 40px;
+  -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+  border: none;
+  overflow: hidden;
+}
+
+.button-container .button:before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-size: 100%;
+  background-image: url("../../img/icon/icon_sns.png");
+}
+
+.button-container .button:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: 40px;
+  height: 100%;
+  border-right-style: solid;
+  border-right-width: 1px;
+}
+
+.nnid-info {
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* tw */
+.btn-tw{
+  background-color: #5AABF3;
+}
+
+.btn-tw:before{
+  background-position: 0 0;
+}
+
+.btn-tw:after{
+  border-color: #5099DB;
+}
+
+
+/* fb */
+.btn-fb{
+  background-color: #39569C;
+}
+
+.btn-fb:before{
+  background-position: 0 -40px;
+}
+
+
+.btn-fb:after{
+  border-color: #334D8C;
+}
+
+/* google */
+.button-container .btn-google{
+  background-color: #4285f4;
+  border: #4285f4 solid 1px;
+}
+
+.button-container .btn-google:before{
+  top: 50%;
+  left: 10px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background-image: url(../../../images/login-form/icon_google.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.button-container .btn-google:after{
+  background-color: #fff;
+}
+
+/* yahoo */
+
+.button-container .btn-yahoo{
+  background-color: #ff0029;
+  border: #ff0029 solid 1px;
+}
+
+.button-container .btn-yahoo:before{
+  top: 50%;
+  left: 7px;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 27px;
+  height: 13px;
+  background-image: url(https://s.yimg.jp/images/login/btn/ymark_r_13_2x.png);
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.button-container .btn-yahoo:after{
+  background-color: #fff;
+}
+
+/* line */
+.btn-line{
+  background-color: #37C600;
+}
+
+.btn-line:before{
+  background-position: 0 -120px;
+}
+
+.btn-line:after{
+  border-color: #30B200;
+}
+
+/* apple */
+.btn-apple{
+  background-color: #000;
+}
+
+.button-container .btn-apple:before{
+  background-image: url(../../img/icon/icon_apple.svg);
+  background-size: 46%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-apple:after{
+  border-color: #000;
+}
+
+/* nintendo account */
+.button-container .btn-nintendo-account {
+  padding-left: 0;
+  background-color: #e60012;
+}
+
+.button-container .btn-nintendo-account::after {
+  display: none;
+}
+
+.button-container .btn-nintendo-account::before {
+  display: none;
+}
+
+/* nnid */
+.btn-nnid{
+  background-color: #ff7c00;
+}
+
+.btn-nnid:before{
+  background-position: 0 -80px;
+}
+
+
+.btn-nnid:after{
+  border-color: #E17100;
+}
+
+
+.main .signup {
+  margin: 0 8px;
+}
+.main .signup .button-wrap {
+  width: 100%;
+}
+.main .signup .button-wrap .button-signup {
+  display: block;
+  position: relative;
+  padding: 12px 0;
+  color: #3C3F3F;
+  width: 100%;
+  text-align: center;
+  background-color: #FA0;
+  border-radius: 8px;
+  border: solid 2px;
+  border-color: #F90 #C70 #950;
+  box-shadow: 0 0 2px #930;
+  background-color: #ffcc00;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffcc00), color-stop(100%, #ff8800));
+  background-image: -webkit-linear-gradient(#ffcc00, #ff8800);
+  background-image: linear-gradient(#ffcc00, #ff8800);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+.main .signup .button-wrap .button-signup:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: solid 1px #FE0;
+  border-radius: 8px;
+}
+
+.main .signup .button-wrap .button-signup span {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.main .signup .button-wrap .button-signup .text-button {
+  font-size: 32px;
+  margin-bottom: 0;
+  text-shadow: 0 0 2px #930;
+}
+
+.footer{
+  overflow: hidden;
+  width: 960px;
+  margin: 0 auto 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.certMarkContainer {
+  float: left;
+  display: table;
+  border: #ccc solid 1px;
+  width: 360px;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.certMark{
+  display: table-cell;
+}
+
+.certMark a{
+  display: block;
+  width: 100px;
+  height: 75px;
+  background-color: #000;
+
+}
+
+.certificate{
+  display: table-cell;
+  font-size: 11px;
+  padding-left: 8px;
+  padding-right: 8px;
+  vertical-align: middle;
+}
+
+.campaignBannerContainer {
+  float: left;
+  margin-left: 10px;
+  border: #ccc solid 1px;
+  width: 182px;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.campaignBannerContainer a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.campaignBannerContainer img {
+  width: 100%;
+  height: 100%;
+  vertical-align: top;
+}
+
+
+.certificate a{
+  text-decoration: underline;
+  color: #9F3F9F;
+}
+
+.copyright{
+  float: right;
+  font-size: 11px;
+  line-height: 80px;
+  text-align: right;
+  color: #6C6F5F;
+  vertical-align: top;
+}
+
+.ext-container {
+  width: 100%;
+  text-align: center;
+}
+
+.notice {
+  position: absolute;
+  top: -56px;
+  left: 8px;
+  padding: 0 8px;
+  width: 936px;
+  background-color: #000;
+  background-color: rgba(15, 15, 15, 0.8);
+  border: #6F6F6F solid 1px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 40px;
+  z-index: 1;
+  box-shadow: 0 1px 2px rgba(0,0,0,.4) ;
+}
+.notice .notice__text {
+  display: inline-block;
+  color: #fff;
+  font-size: 13px;
+}
+
+.notice .notice__link {
+  display: inline-block;
+  color: #f66;
+  text-decoration: underline;
+  font-size: 13px;
+}
+
+.notice .notice__button--close {
+  position: absolute;
+  right: 12px;
+  color: #fff;
+  padding-left: 12px;
+  border-left: #6F6F6F solid 1px;
+  cursor: pointer;
+}
+
+.notice-account {
+  width: 772px;
+  margin: 0 auto;
+  padding: 34px 94px;
+  border-radius: 8px;
+  text-align: center;
+  background-color: white;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #efefec));
+  background-image: -webkit-linear-gradient(white, #efefec);
+  background-image: linear-gradient(white, #efefec);
+  border: #9c9f9f solid 2px;
+  -webkit-box-shadow: #9c9f9f 0 0 4px;
+  -moz-box-shadow: #9c9f9f 0 0 4px;
+  -ms-box-shadow: #9c9f9f 0 0 4px;
+  -o-box-shadow: #9c9f9f 0 0 4px;
+  box-shadow: #9c9f9f 0 0 4px;
+}
+.notice-account .notice-account__title {
+  font-size: 24px;
+  margin-bottom: 32px;
+}
+.notice-account .notice-account__title.icon_notice:before {
+  content: "";
+  display: block;
+  width: 128px;
+  height: 128px;
+  margin: 0 auto 16px;
+  background-image: url("/assets/images/login-form/exclamation.png");
+  background-repeat: no-repeat;
+}
+.notice-account .notice-account__text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+.notice-account .text-link {
+  font-size: 16px;
+}
+
+.notice-account .text-help-link {
+  font-size: 14px;
+}
+
+/* for PS3App */
+#input__mailtel { border: 2px #9C9F9F solid; }
+#input__password { border: 2px #9C9F9F solid; }

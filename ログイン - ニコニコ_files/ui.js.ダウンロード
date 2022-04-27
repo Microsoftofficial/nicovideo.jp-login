@@ -1,0 +1,7 @@
+$(function() {
+  $("a.notice__button--close").click(function() {
+    $(this)
+      .parent("div.notice")
+      .hide();
+  });
+});
